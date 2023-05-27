@@ -40,8 +40,8 @@ You are free to use your preferred stack, be it WAMP/MAMP or Docker with K8s etc
 
 ## To Enhance
 
-[ ] Style the front-end
-[ ] Add more tests
+- [ ] Style the front-end
+- [ ] Add more tests
 
 ## Comments
 
