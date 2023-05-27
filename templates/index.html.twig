@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Previous VAT Calculations</h1>
+    {% if calculations|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        Input: Monetary Value
+                    </td>
+                    <td>
+                        Input: VAT Rate
+                    </td>
+                    <td>
+                        Input: Is VAT included?
+                    </td>
+                    <td>
+                        Output: Monetary value excluding VAT
+                    </td>
+                    <td>
+                        Output: Amount of VAT
+                    </td>
+                    <td>
+                        Output: Monetary value including VAT
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for calculation in calculations %}
+                    {# We want to highlight a new calculation so that the user knows their results #}
+                    <tr
+                        {% if highlightedCalculation is not null and calculation.id == highlightedCalculation.id %} style="color: green" {% endif %}>
+                        {# Twig automatically escapes variables so we are protected from XSS here #}
+                        <td>
+                            £{{ calculation.v }}
+                        </td>
+                        <td>
+                            {{ calculation.r }}%
+                        </td>
+                        <td>
+                            {{ calculation.isVatIncluded ? 'Yes' : 'No' }}
+                        </td>
+                        <td>
+                            £{{ calculation.getResultWithoutVat() }}
+                        </td>
+                        <td>
+                            £{{ calculation.getAmountOfVat() }}
+                        </td>
+                        <td>
+                            £{{ calculation.getResultWithVat() }}
+                        </td>
+                    </tr>
+                    <tr>
+                    {% endfor %}
+                </tbody>
+            </tbody>
+        </table>
+    {% else %}
+        <p>No previous VAT calculations found</p>
+    {% endif %}
+{% endblock %}

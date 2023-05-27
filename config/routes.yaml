@@ -5,3 +5,23 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+
+index:
+    path: /
+    controller: App\Controller\IndexController::new
+    methods: [GET]
+
+new_calculation:
+    path: /new-calculation
+    controller: App\Controller\NewCalculationController::new
+    methods: [GET, POST]
+
+delete_calculations:
+    path: /delete-calculations
+    controller: App\Controller\DeleteCalculationsController::new
+    methods: [GET]
+
+download_calculations:
+    path: /download-calculations
+    controller: App\Controller\DownloadCalculationsController::new
+    methods: [GET]
